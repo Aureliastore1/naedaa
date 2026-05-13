@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>naedaa — Official Store | Kecantikan, Fashion & Aksesoris</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              50: '#fdf9ef',
+              100: '#faf0d4',
+              200: '#f3dea8',
+              300: '#e9c66f',
+              400: '#ddb03f',
+              500: '#d49824',
+              600: '#b87a19',
+              700: '#975b18',
+              800: '#7c481c',
+              900: '#673c1b',
+            },
+            cream: '#faf7f2',
+            charcoal: '#1a1a1a',
+            muted: '#6b6b6b',
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            brand: ['Comfortaa', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #faf7f2; color: #1a1a1a; }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #faf7f2; }
+    ::-webkit-scrollbar-thumb { background: #d49824; border-radius: 10px; }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .animate-fade-in-up { animation: fadeInUp 0.8s ease forwards; }
+    .animate-fade-in { animation: fadeIn 1s ease forwards; }
+    .animate-slide-left { animation: slideInLeft 0.8s ease forwards; }
+    .animate-slide-right { animation: slideInRight 0.8s ease forwards; }
+    .animate-scale-in { animation: scaleIn 0.6s ease forwards; }
+    .animate-float { animation: float 3s ease-in-out infinite; }
+
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-500 { animation-delay: 0.5s; }
+    .delay-600 { animation-delay: 0.6s; }
+
+    .hidden-animate { opacity: 0; }
+
+    .gold-shimmer {
+      background: linear-gradient(90deg, #d49824, #e9c66f, #d49824);
+      background-size: 200% 100%;
+      animation: shimmer 3s ease-in-out infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(212, 152, 36, 0.15);
+    }
+
+    .glass-dark {
+      background: rgba(26, 26, 26, 0.85);
+      backdrop-filter: blur(20px);
+    }
+
+    .product-card:hover .product-img {
+      transform: scale(1.08);
+    }
+
+    .product-card:hover .product-overlay {
+      opacity: 1;
+    }
+
+    .category-card:hover .category-img {
+      transform: scale(1.1);
+    }
+
+    .category-card:hover .category-overlay {
+      background: rgba(26, 26, 26, 0.4);
+    }
+
+    .trust-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(212, 152, 36, 0.15);
+    }
+
+    /* Navbar scroll */
+    .navbar-scrolled {
+      background: rgba(250, 247, 242, 0.95) !important;
+      backdrop-filter: blur(20px) !important;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+
+    /* Testimonial slider */
+    .testimonial-track {
+      transition: transform 0.5s ease;
+    }
+
+    /* Section divider */
+    .section-divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, #d49824, #e9c66f);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #d49824, #b87a19);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #ddb03f, #d49824);
+      box-shadow: 0 8px 30px rgba(212, 152, 36, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 1.5px solid #d49824;
+      color: #d49824;
+      transition: all 0.3s ease;
+    }
+    .btn-outline:hover {
+      background: #d49824;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Counter */
+    .counter-num {
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2 group">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-500 to-gold-700 flex items-center justify-center">
+            <span class="font-brand text-white text-lg font-bold">n</span>
+          </div>
+          <span class="font-brand text-2xl font-semibold tracking-wider text-charcoal group-hover:text-gold-600 transition-colors">naedaa</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#beranda" class="text-sm font-medium text-muted hover:text-gold-600 transition-colors tracking-wide">Beranda</a>
+          <a href="#tentang" class="text-sm font-medium text-muted hover:text-gold-600 transition-colors tracking-wide">Tentang</a>
+          <a href="#kategori" class="text-sm font-medium text-muted hover:text-gold-600 transition-colors tracking-wide">Kategori</a>
+          <a href="#produk" class="text-sm font-medium text-muted hover:text-gold-600 transition-colors tracking-wide">Produk</a>
+          <a href="#testimonial" class="text-sm font-medium text-muted hover:text-gold-600 transition-colors tracking-wide">Testimoni</a>
+          <a href="#kontak" class="btn-primary px-6 py-2.5 rounded-full text-white text-sm font-medium tracking-wide">Hubungi Kami</a>
+        </div>
+
+        <!-- Mobile burger -->
+        <button id="menuBtn" class="md:hidden text-charcoal p-2" aria-label="Menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="mobile-menu fixed inset-0 z-[60] bg-cream">
+    <div class="flex flex-col h-full">
+      <div class="flex items-center justify-between h-20 px-6">
+        <a href="#" class="flex items-center gap-2">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-500 to-gold-700 flex items-center justify-center">
+            <span class="font-brand text-white text-lg font-bold">n</span>
+          </div>
+          <span class="font-brand text-2xl font-semibold tracking-wider text-charcoal">naedaa</span>
+        </a>
+        <button id="closeMenuBtn" class="text-charcoal p-2">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+      <div class="flex-1 flex flex-col justify-center px-8 gap-6">
+        <a href="#beranda" class="mobile-link text-3xl font-display text-charcoal hover:text-gold-600 transition-colors">Beranda</a>
+        <a href="#tentang" class="mobile-link text-3xl font-display text-charcoal hover:text-gold-600 transition-colors">Tentang</a>
+        <a href="#kategori" class="mobile-link text-3xl font-display text-charcoal hover:text-gold-600 transition-colors">Kategori</a>
+        <a href="#produk" class="mobile-link text-3xl font-display text-charcoal hover:text-gold-600 transition-colors">Produk</a>
+        <a href="#testimonial" class="mobile-link text-3xl font-display text-charcoal hover:text-gold-600 transition-colors">Testimoni</a>
+        <div class="mt-4">
+          <a href="#kontak" class="mobile-link btn-primary inline-block px-8 py-3 rounded-full text-white text-lg font-medium">Hubungi Kami</a>
+        </div>
+      </div>
+      <div class="px-8 pb-8">
+        <div class="flex gap-4">
+          <a href="#" class="w-10 h-10 rounded-full border border-gold-300 flex items-center justify-center text-gold-600 hover:bg-gold-500 hover:text-white transition-all">
+            <i data-lucide="instagram" class="w-4 h-4"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full border border-gold-300 flex items-center justify-center text-gold-600 hover:bg-gold-500 hover:text-white transition-all">
+            <i data-lucide="facebook" class="w-4 h-4"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full border border-gold-300 flex items-center justify-center text-gold-600 hover:bg-gold-500 hover:text-white transition-all">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section id="beranda" class="relative min-h-screen flex items-center overflow-hidden">
+    <!-- Background -->
+    <div class="absolute inset-0">
+      <img src="http://static.photos/cosmetic/1200x630/10" alt="Background" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-r from-charcoal/80 via-charcoal/60 to-charcoal/40"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-cream via-transparent to-transparent"></div>
+    </div>
+
+    <!-- Decorative elements -->
+    <div class="absolute top-32 right-10 w-72 h-72 bg-gold-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 left-10 w-96 h-96 bg-gold-400/5 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 w-full">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8 animate-fade-in">
+          <i data-lucide="sparkles" class="w-4 h-4 text-gold-400"></i>
+          <span class="text-gold-300 text-sm font-medium tracking-widest uppercase">Official Store</span>
+        </div>
+
+        <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 animate-fade-in-up">
+          Elegan &<br>
+          <span class="gold-shimmer">Eksklusif</span><br>
+          Untuk Anda
+        </h1>
+
+        <p class="text-lg sm:text-xl text-white/80 font-light leading-relaxed mb-10 max-w-xl animate-fade-in-up delay-200 hidden-animate">
+          Naedaa — destinasi resmi untuk kecantikan, fashion, dan aksesoris premium. Bergabunglah dengan ribuan pelanggan yang telah mempercayai kami.
+        </p>
+
+        <div class="flex flex-wrap gap-4 mb-12 animate-fade-in-up delay-400 hidden-animate">
+          <a href="#produk" class="btn-primary px-8 py-4 rounded-full text-white font-medium tracking-wide flex items-center gap-2">
+            Jelajahi Produk
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+          <a href="#tentang" class="btn-outline border-white/40 !text-white hover:!bg-white hover:!text-charcoal px-8 py-4 rounded-full font-medium tracking-wide">
+            Tentang Kami
+          </a>
+        </div>
+
+        <!-- Mini stats -->
+        <div class="flex flex-wrap gap-8 sm:gap-12 animate-fade-in-up delay-500 hidden-animate">
+          <div>
+            <div class="text-3xl sm:text-4xl font-display font-bold text-white counter-num" data-target="15000">0</div>
+            <div class="text-white/60 text-sm mt-1">Pelanggan Puas</div>
+          </div>
+          <div class="w-px bg-white/20"></div>
+          <div>
+            <div class="text-3xl sm:text-4xl font-display font-bold text-white counter-num" data-target="5000">0</div>
+            <div class="text-white/60 text-sm mt-1">Produk Tersedia</div>
+          </div>
+          <div class="w-px bg-white/20"></div>
+          <div>
+            <div class="text-3xl sm:text-4xl font-display font-bold text-white counter-num" data-target="98">0</div>
+            <div class="text-white/60 text-sm mt-1">% Kepuasan</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
+      <a href="#tentang" class="flex flex-col items-center gap-2 text-white/60 hover:text-gold-400 transition-colors">
+        <span class="text-xs tracking-widest uppercase">Scroll</span>
+        <i data-lucide="chevron-down" class="w-5 h-5"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== TRUST BADGES ===== -->
+  <section class="relative -mt-1 z-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 bg-white rounded-2xl md:rounded-none shadow-xl md:shadow-none md:bg-transparent p-6 md:p-0">
+        <div class="trust-card flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-lg transition-all duration-400 cursor-default">
+          <div class="w-14 h-14 rounded-2xl bg-gold-50 flex items-center justify-center mb-3">
+            <i data-lucide="shield-check" class="w-7 h-7 text-gold-600"></i>
+          </div>
+          <h4 class="font-semibold text-charcoal text-sm">100% Produk Asli</h4>
+          <p class="text-xs text-muted mt-1">Garansi keaslian setiap item</p>
+        </div>
+        <div class="trust-card flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-lg transition-all duration-400 cursor-default">
+          <div class="w-14 h-14 rounded-2xl bg-gold-50 flex items-center justify-center mb-3">
+            <i data-lucide="truck" class="w-7 h-7 text-gold-600"></i>
+          </div>
+          <h4 class="font-semibold text-charcoal text-sm">Pengiriman Cepat</h4>
+          <p class="text-xs text-muted mt-1">Sampai dalam 1-3 hari kerja</p>
+        </div>
+        <div class="trust-card flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-lg transition-all duration-400 cursor-default">
+          <div class="w-14 h-14 rounded-2xl bg-gold-50 flex items-center justify-center mb-3">
+            <i data-lucide="refresh-ccw" class="w-7 h-7 text-gold-600"></i>
+          </div>
+          <h4 class="font-semibold text-charcoal text-sm">Garansi Retur</h4>
+          <p class="text-xs text-muted mt-1">30 hari pengembalian mudah</p>
+        </div>
+        <div class="trust-card flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-lg transition-all duration-400 cursor-default">
+          <div class="w-14 h-14 rounded-2xl bg-gold-50 flex items-center justify-center mb-3">
+            <i data-lucide="headphones" class="w-7 h-7 text-gold-600"></i>
+          </div>
+          <h4 class="font-semibold text-charcoal text-sm">CS 24/7</h4>
+          <p class="text-xs text-muted mt-1">Layanan pelanggan siap melayani</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TENTANG KAMI ===== -->
+  <section id="tentang" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Image side -->
+        <div class="relative scroll-animate">
+          <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+            <img src="http://static.photos/fashion/640x360/55" alt="Naedaa Store" class="w-full h-[500px] object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal/40 to-transparent"></div>
+          </div>
+          <!-- Floating badge -->
+          <div class="absolute -bottom-6 -right-4 md:-right-8 glass-card rounded-2xl p-6 shadow-xl animate-float">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center">
+                <i data-lucide="award" class="w-6 h-6 text-white"></i>
+              </div>
+              <div>
+                <div class="text-2xl font-display font-bold text-charcoal">5+</div>
+                <div class="text-sm text-muted">Tahun Terpercaya</div>
+              </div>
+            </div>
+          </div>
+          <!-- Decorative frame -->
+          <div class="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-gold-400 rounded-tl-2xl"></div>
+          <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-gold-400 rounded-br-2xl"></div>
+        </div>
+
+        <!-- Text side -->
+        <div class="scroll-animate">
+          <div class="inline-flex items-center gap-2 mb-4">
+            <div class="section-divider"></div>
+            <span class="text-gold-600 text-sm font-semibold tracking-widest uppercase">Tentang Kami</span>
+          </div>
+
+          <h2 class="font-display text-4xl md:text-5xl font-bold text-charcoal leading-tight mb-6">
+            Destinasi Belanja <span class="text-gold-600">Premium</span> Pilihan Anda
+          </h2>
+
+          <p class="text-muted text-lg leading-relaxed mb-6">
+            <strong class="text-charcoal font-brand">naedaa</strong> hadir sejak 2019 sebagai toko online resmi yang menyediakan produk kecantikan, fashion, aksesoris, dan kebutuhan lifestyle berkualitas tinggi. Kami bekerja langsung dengan brand terpercaya dan distributor resmi untuk memastikan setiap produk yang sampai di tangan Anda adalah <em>100% autentik</em>.
+          </p>
+
+          <p class="text-muted leading-relaxed mb-8">
+            Dengan komitmen terhadap kualitas, keamanan transaksi, dan pelayanan terbaik, naedaa telah dipercaya oleh lebih dari 15.000 pelanggan di seluruh Indonesia. Kami tidak hanya menjual produk — kami menghadirkan pengalaman belanja yang menyenangkan dan terpercaya.
+          </p>
+
+          <!-- Key points -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-gold-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-4 h-4 text-gold-600"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-charcoal text-sm">Brand Resmi & Terlisensi</h4>
+                <p class="text-xs text-muted mt-0.5">Hanya menjual produk dari brand terdaftar</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-gold-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-4 h-4 text-gold-600"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-charcoal text-sm">Transaksi Aman</h4>
+                <p class="text-xs text-muted mt-0.5">Enkripsi SSL & payment gateway terpercaya</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-gold-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-4 h-4 text-gold-600"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-charcoal text-sm">Kurasi Tim Ahli</h4>
+                <p class="text-xs text-muted mt-0.5">Setiap produk melalui proses seleksi ketat</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-gold-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="check" class="w-4 h-4 text-gold-600"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-charcoal text-sm">Rating 4.9/5</h4>
+                <p class="text-xs text-muted mt-0.5">Dari 15,000+ ulasan pelanggan nyata</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="#produk" class="btn-primary inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-medium tracking-wide">
+            Lihat Koleksi Kami
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KATEGORI ===== -->
+  <section id="kategori" class="py-24 md:py-32 bg-charcoal">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 scroll-animate">
+        <div class="inline-flex items-center gap-2 mb-4">
+          <div class="section-divider"></div>
+          <span class="text-gold-400 text-sm font-semibold tracking-widest uppercase">Koleksi Kami</span>
+          <div class="section-divider"></div>
+        </div>
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-white leading-tight">
+          Jelajahi Kategori
+        </h2>
+        <p class="text-white/60 mt-4 max-w-xl mx-auto">Temukan produk pilihan dari berbagai kategori premium yang kami kurasi khusus untuk Anda</p>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <!-- Category 1: Kecantikan -->
+        <div class="category-card group relative rounded-2xl overflow-hidden cursor-pointer h-64 md:h-80 scroll-animate">
+          <img src="http://static.photos/cosmetic/640x360/22" alt="Kecantikan" class="category-img absolute inset-0 w-full h-full object-cover transition-transform duration-700">
+          <div class="category-overlay absolute inset-0 bg-charcoal/50 transition-all duration-500"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+            <div class="flex items-center gap-2 mb-2">
+              <i data-lucide="sparkles" class="w-4 h-4 text-gold-400"></i>
+              <span class="text-gold-400 text-xs font-semibold tracking-widest uppercase">Beauty</span>
+            </div>
+            <h3 class="font-display text-xl md:text-2xl font-bold text-white">Kecantikan</h3>
+            <p class="text-white/70 text-sm mt-1 hidden sm:block">Skincare, makeup & perawatan kulit</p>
+            <div class="flex items-center gap-1 mt-3 text-gold-400 text-sm font-medium group-hover:gap-2 transition-all">
+              <span>Jelajahi</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 2: Fashion -->
+        <div class="category-card group relative rounded-2xl overflow-hidden cursor-pointer h-64 md:h-80 scroll-animate">
+          <img src="http://static.photos/fashion/640x360/33" alt="Fashion" class="category-img absolute inset-0 w-full h-full object-cover transition-transform duration-700">
+          <div class="category-overlay absolute inset-0 bg-charcoal/50 transition-all duration-500"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+            <div class="flex items-center gap-2 mb-2">
+              <i data-lucide="shirt" class="w-4 h-4 text-gold-400"></i>
+              <span class="text-gold-400 text-xs font-semibold tracking-widest uppercase">Fashion</span>
+            </div>
+            <h3 class="font-display text-xl md:text-2xl font-bold text-white">Fashion</h3>
+            <p class="text-white/70 text-sm mt-1 hidden sm:block">Pakaian, outerwear & koleksi trendy</p>
+            <div class="flex items-center gap-1 mt-3 text-gold-400 text-sm font-medium group-hover:gap-2 transition-all">
+              <span>Jelajahi</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 3: Aksesoris -->
+        <div class="category-card group relative rounded-2xl overflow-hidden cursor-pointer h-64 md:h-80 scroll-animate">
+          <img src="http://static.photos/education/640x360/11" alt="Aksesoris" class="category-img absolute inset-0 w-full h-full object-cover transition-transform duration-700">
+          <div class="category-overlay absolute inset-0 bg-charcoal/50 transition-all duration-500"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+            <div class="flex items-center gap-2 mb-2">
+              <i data-lucide="gem" class="w-4 h-4 text-gold-400"></i>
+              <span class="text-gold-400 text-xs font-semibold tracking-widest uppercase">Accessories</span>
+            </div>
+            <h3 class="font-display text-xl md:text-2xl font-bold text-white">Aksesoris</h3>
+            <p class="text-white/70 text-sm mt-1 hidden sm:block">Tas, perhiasan & aksesoris elegan</p>
+            <div class="flex items-center gap-1 mt-3 text-gold-400 text-sm font-medium group-hover:gap-2 transition-all">
+              <span>Jelajahi</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 4: Lifestyle -->
+        <div class="category-card group relative rounded-2xl overflow-hidden cursor-pointer h-64 md:h-80 scroll-animate">
+          <img src="http://static.photos/wellness/640x360/15" alt="Lifestyle" class="category-img absolute inset-0 w-full h-full object-cover transition-transform duration-700">
+          <div class="category-overlay absolute inset-0 bg-charcoal/50 transition-all duration-500"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+            <div class="flex items-center gap-2 mb-2">
+              <i data-lucide="heart" class="w-4 h-4 text-gold-400"></i>
+              <span class="text-gold-400 text-xs font-semibold tracking-widest uppercase">Lifestyle</span>
+            </div>
+            <h3 class="font-display text-xl md:text-2xl font-bold text-white">Lifestyle</h3>
+            <p class="text-white/70 text-sm mt-1 hidden sm:block">Aromaterapi, home decor & lainnya</p>
+            <div class="flex items-center gap-1 mt-3 text-gold-400 text-sm font-medium group-hover:gap-2 transition-all">
+              <span>Jelajahi</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRODUK UNGGULAN ===== -->
+  <section id="produk" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 scroll-animate">
+        <div class="inline-flex items-center gap-2 mb-4">
+          <div class="section-divider"></div>
+          <span class="text-gold-600 text-sm font-semibold tracking-widest uppercase">Pilihan Terbaik</span>
+          <div class="section-divider"></div>
+        </div>
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-charcoal leading-tight">
+          Produk Unggulan
+        </h2>
+        <p class="text-muted mt-4 max-w-xl mx-auto">Koleksi terbaik yang telah dipilih dan dikurasi oleh tim kami untuk memastikan kualitas premium</p>
+      </div>
+
+      <!-- Product filter tabs -->
+      <div class="flex flex-wrap justify-center gap-3 mb-12 scroll-animate">
+        <button class="product-filter active px-6 py-2.5 rounded-full text-sm font-medium transition-all bg-charcoal text-white" data-filter="all">Semua</button>
+        <button class="product-filter px-6 py-2.5 rounded-full text-sm font-medium transition-all bg-gold-50 text-muted hover:bg-charcoal hover:text-white" data-filter="beauty">Kecantikan</button>
+        <button class="product-filter px-6 py-2.5 rounded-full text-sm font-medium transition-all bg-gold-50 text-muted hover:bg-charcoal hover:text-white" data-filter="fashion">Fashion</button>
+        <button class="product-filter px-6 py-2.5 rounded-full text-sm font-medium transition-all bg-gold-50 text-muted hover:bg-charcoal hover:text-white" data-filter="accessories">Aksesoris</button>
+      </div>
+
+      <!-- Products grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="productsGrid">
+        <!-- Product 1 -->
+        <div class="product-card group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-400 scroll-animate" data-category="beauty">
+          <div class="relative overflow-hidden h-72">
+            <img src="http://static.photos/cosmetic/320x240/101" alt="Serum Wajah Premium" class="product-img w-full h-full object-cover transition-transform duration-700">
+            <div class="product-overlay absolute inset-0 bg-charcoal/20 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+              <button class="bg-white text-charcoal px-6 py-2.5 rounded-full font-medium text-sm hover:bg-gold-500 hover:text-white transition-all">Lihat Detail</button>
+            </div>
+            <span class="absolute top-3 left-3 bg-gold-500 text-white text-xs font-semibold px-3 py-1 rounded-full">BESTSELLER</span>
+            <button class="absolute top-3 right-3 w-9 h-9 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-gold-500 hover:text-white transition-all text-charcoal">
+              <i data-lucide="heart" class="w-4 h-4"></i>
+            </button>
+          </div>
+          <div class="p-5">
+            <span class="text-gold-600 text-xs font-semibold tracking-widest uppercase">Kecantikan</span>
+            <h3 class="font-display text-lg font-semibold text-charcoal mt-1">Serum Wajah Premium</h3>
+            <p class="text-muted text-sm mt-1">Vitamin C & Hyaluronic Acid 30ml</p>
+            <div class="flex items-center gap-1 mt-2">
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
+              <span class="text-xs text-muted ml-1">(2,340)</span>
+            </div>
+            <div class="flex items-center justify-between mt-4">
+              <div>
+                <span class="text-lg font-bold text-charcoal">Rp 189.000</span>
+                <span class="text-sm text-muted line-through ml-2">Rp 299.000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-400 scroll-animate" data-category="fashion">
+          <div class="relative overflow-hidden h-72">
+            <img src="http://static.photos/fashion/320x240/202" alt="Blazer Elegan" class="product-img w-full h-full object-cover transition-transform duration-700">
+            <div class="product-overlay absolute inset-0 bg-charcoal/20 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+              <button class="bg-white text-charcoal px-6 py-2.5 rounded-full font-medium text-sm hover:bg-gold-500 hover:text-white transition-all">Lihat Detail</button>
+            </div>
+            <span class="absolute top-3 left-3 bg-charcoal text-white text-xs font-semibold px-3 py-1 rounded-full">NEW ARRIVAL</span>
+            <button class="absolute top-3 right-3 w-9 h-9 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-gold-500 hover:text-white transition-all text-charcoal">
+              <i data-lucide="heart" class="w-4 h-4"></i>
+            </button>
+          </div>
+          <div class="p-5">
+            <span class="text-gold-600 text-xs font-semibold tracking-widest uppercase">Fashion</span>
+            <h3 class="font-display text-lg font-semibold text-charcoal mt-1">Blazer Elegan</h3>
+            <p class="text-muted text-sm mt-1">Premium Wool Blend Cut Slim Fit</p>
+            <div class="flex items-center gap-1 mt-2">
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 text-muted"></i>
+              <span class="text-xs text-muted ml-1">(876)</span>
+            </div>
+            <div class="flex items-center justify-between mt-4">
+              <span class="text-lg font-bold text-charcoal">Rp 459.000</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-400 scroll-animate" data-category="accessories">
+          <div class="relative overflow-hidden h-72">
+            <img src="http://static.photos blurred/320x240/303" alt="Tas Selempang Mewah" class="product-img w-full h-full object-cover transition-transform duration-700">
+            <div class="product-overlay absolute inset-0 bg-charcoal/20 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+              <button class="bg-white text-charcoal px-6 py-2.5 rounded-full font-medium text-sm hover:bg-gold-500 hover:text-white transition-all">Lihat Detail</button>
+            </div>
+            <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full">-40%</span>
+            <button class="absolute top-3 right-3 w-9 h-9 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-gold-500 hover:text-white transition-all text-charcoal">
+              <i data-lucide="heart" class="w-4 h-4"></i>
+            </button>
+          </div>
+          <div class="p-5">
+            <span class="text-gold-600 text-xs font-semibold tracking-widest uppercase">Aksesoris</span>
+            <h3 class="font-display text-lg font-semibold text-charcoal mt-1">Tas Selempang Mewah</h3>
+            <p class="text-muted text-sm mt-1">Genuine Leather Limited Edition</p>
+            <div class="flex items-center gap-1 mt-2">
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
+              <span class="text-xs text-muted ml-1">(1,567)</span>
+            </div>
+            <div class="flex items-center justify-between mt-4">
+              <div>
+                <span class="text-lg font-bold text-charcoal">Rp 549.000</span>
+                <span class="text-sm text-muted line-through ml-2">Rp 915.000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-400 scroll-animate" data-category="beauty">
+          <div class="relative overflow-hidden h-72">
+            <img src="http://static.photos/cosmetic/320x240/404" alt="Skincare Set Lengkap" class="product-img w-full h-full object-cover transition-transform duration-700">
+            <div class="product-overlay absolute inset-0 bg-charcoal/20 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+              <button class="bg-white text-charcoal px-6 py-2.5 rounded-full font-medium text-sm hover:bg-gold-500 hover:text-white transition-all">Lihat Detail</button>
+            </div>
+            <button class="absolute top-3 right-3 w-9 h-9 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-gold-500 hover:text-white transition-all text-charcoal">
+              <i data-lucide="heart" class="w-4 h-4"></i>
+            </button>
+          </div>
+          <div class="p-5">
+            <span class="text-gold-600 text-xs font-semibold tracking-widest uppercase">Kecantikan</span>
+            <h3 class="font-display text-lg font-semibold text-charcoal mt-1">Skincare Set Lengkap</h3>
+            <p class="text-muted text-sm mt-1">5-in-1 Complete Beauty Routine</p>
+            <div class="flex items-center gap-1 mt-2">
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
+              <span class="text-xs text-muted ml-1">(3,102)</span>
+            </div>
+            <div class="flex items-center justify-between mt-4">
+              <span class="text-lg font-bold text-charcoal">Rp 399.000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 scroll-animate">
+        <a href="#" class="btn-outline inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium tracking-wide border-2 border-gold-500 text-gold-600 hover:bg-gold-500 hover:text-white transition-all">
+          Lihat Semua Produk
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KENAPA PILIH KAMI ===== -->
+  <section class="py-24 md:py-32 bg-gradient-to-b from-cream to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 scroll-animate">
+        <div class="inline-flex items-center gap-2 mb-4">
+          <div class="section-divider"></div>
+          <span class="text-gold-600 text-sm font-semibold tracking-widest uppercase">Kenapa Kami</span>
+          <div class="section-divider"></div>
+        </div>
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-charcoal leading-tight">
+          Alasan Pelanggan<br><span class="text-gold-600">Mempercayai</span> Kami
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Reason 1 -->
+        <div class="scroll-animate text-center group">
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-gold-200 group-hover:shadow-xl group-hover:shadow-gold-300 transition-all duration-300 group-hover:-translate-y-2">
+            <i data-lucide="badge-check" class="w-10 h-10 text-white"></i>
+          </div>
+          <h3 class="font-display text-xl font-bold text-charcoal mb-3">Produk 100% Original</h3>
+          <p class="text-muted leading-relaxed">Kami hanya menjual produk autentik dari brand resmi. Setiap item dilengkapi kode verifikasi dan sertifikasi resmi. Jaminan uang kembali jika terbukti tidak asli.</p>
+        </div>
+
+        <!-- Reason 2 -->
+        <div class="scroll-animate text-center group">
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-gold-200 group-hover:shadow-xl group-hover:shadow-gold-300 transition-all duration-300 group-hover:-translate-y-2">
+            <i data-lucide="lock" class="w-10 h-10 text-white"></i>
+          </div>
+          <h3 class="font-display text-xl font-bold text-charcoal mb-3">Transaksi Super Aman</h3>
+          <p class="text-muted leading-relaxed">Sistem pembayaran terenkripsi SSL 256-bit. Bermitra dengan payment gateway terpercaya Indonesia. Data pribadi Anda terjaga keamanannya sepenuhnya.</p>
+        </div>
+
+        <!-- Reason 3 -->
+        <div class="scroll-animate text-center group">
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-gold-200 group-hover:shadow-xl group-hover:shadow-gold-300 transition-all duration-300 group-hover:-translate-y-2">
+            <i data-lucide="heart-handshake" class="w-10 h-10 text-white"></i>
+          </div>
+          <h3 class="font-display text-xl font-bold text-charcoal mb-3">Pelayanan Premium</h3>
+          <p class="text-muted leading-relaxed">Customer service responsif 24/7. Proses pengiriman cepat dengan packaging eksklusif. Garansi retur 30 hari tanpa syarat untuk kenyamanan Anda.</p>
+        </div>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="mt-20 bg-charcoal rounded-3xl p-8 md:p-12 scroll-animate">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div>
+            <div class="text-4xl md:text-5xl font-display font-bold gold-shimmer counter-num" data-target="15000">0</div>
+            <div class="text-white/60 text-sm mt-2">Pelanggan Aktif</div>
+          </div>
+          <div>
+            <div class="text-4xl md:text-5xl font-display font-bold gold-shimmer counter-num" data-target="50">0</div>
+            <div class="text-white/60 text-sm mt-2">Brand Partner</div>
+          </div>
+          <div>
+            <div class="text-4xl md:text-5xl font-display font-bold gold-shimmer counter-num" data-target="5000">0</div>
+            <div class="text-white/60 text-sm mt-2">Produk Tersedia</div>
+          </div>
+          <div>
+            <div class="text-4xl md:text-5xl font-display font-bold gold-shimmer counter-num" data-target="98">0</div>
+            <div class="text-white/60 text-sm mt-2">% Kepuasan</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIAL ===== -->
+  <section id="testimonial" class="py-24 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 scroll-animate">
+        <div class="inline-flex items-center gap-2 mb-4">
+          <div class="section-divider"></div>
+          <span class="text-gold-600 text-sm font-semibold tracking-widest uppercase">Testimoni</span>
+          <div class="section-divider"></div>
+        </div>
+        <h2 class="font-display text-4xl md:text-5xl font-bold text-charcoal leading-tight">
+          Apa Kata <span class="text-gold-600">Pelanggan</span> Kami
+        </h2>
+        <p class="text-muted mt-4 max-w-xl mx-auto">Pengalaman nyata dari pelanggan yang telah merasakan layanan dan produk dari Naedaa</p>
+      </div>
+
+      <div class="relative overflow-hidden">
+        <div class="testimonial-track flex" id="testimonialTrack">
+          <!-- Testimonial 1 -->
+          <div class="w-full md:w-1/3 flex-shrink-0 px-3">
+            <div class="bg-cream rounded-2xl p-8 h-full relative">
+              <div class="absolute top-6 right-6 text-gold-200">
+                <i data-lucide="quote" class="w-10 h-10"></i>
+              </div>
+              <div class="flex items-center gap-1 mb-4">
+                <i data-lucide="star" class="w-4 h-4 text-gold-500 fill-gold-500"></i>
+                <i data-lucide="star" class="w-4 h-4 text-gold-500 fill-gold-500"></i>
+                <i data-lucide="star" class="w-4 h-4 text-gold-500 fill-gold-500"></i>
+                <i data-lucide="star" class="w-4 h-4 text-gold-500 fill-gold-500"></i>
+                <i data-lucide="star" class="w-4 h-4 text-gold-500 fill-gold-500"></i>
+              </div>
+              <p class="text-muted leading-relaxed mb-6">"Pertama kali belanja di Naedaa dan langsung jatuh cinta! Produk skincare-nya 100% original, packaging rapih, dan pengiriman super cepat. Worth every penny!"</p>
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-white font-bold">AS</div>
+                <div>
+                  <h4 class="font-semibold text-charcoal">Alya Safira</h4>
+                  <p class="text-sm text-muted">Jakarta • Verified Buyer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="w-full md:w-1/3 flex-shrink-0 px-3">
+            <div class="bg-cream rounded-2xl p-8 h-full relative">
+              <div class="absolute top-6 right-6 text-gold-200">
+                <i data-lucide="quote" class="w-10 h-10"></i>
+              </div>
+              <div class="flex items-center gap-1 mb-4">
+                <i data-lucide="star" class="w-4 h-4 text-gold-500 fill-gold-500"></i>
+                <i data-lucide="star" class="w-4 h-4 text-gold-500 fill-gold-500"></i>
+                <i data-lucide="star" class="w-4 h-4 text-gold-500 fill-gold-500"></i>
+                <i data-lucide="star" class="w-4 h-4 text-gold-500 fill-gold-500"></i>
+                <i data-lucide="star" class="w-4 h-4 text-gold-500 fill-gold-500"></i>
+              </div>
+              <p class="text-muted leading-relaxed mb-6">"Kualitas fashion dari Naedaa benar-benar premium. Bahan tebal, jahitan rapi, dan desainnya eksklusif. CS-nya juga sangat responsif. Recommended banget!"</p>
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-white font-bold">RA</div>
+                <div>
+                  <h4 class="font-semibold text-charcoal">Rizky Amalia</h4>
+                  <p class="text-sm text-muted">Surabaya • Verified Buyer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="w-full md:w-1/3 flex-shrink-0 px-3">
+            <div class="bg-cream rounded-2xl p-8 h-full relative">
+              <div class="absolute top-6 right-6 text-gold-200">
+                <i data-lucide="quote" class="w-10 h-10"></i>
+              </div>
+              <div class="flex items-center gap-1 mb-4">
+                <i data-lucide="star" class="w-4 h-4 text-gold-500 fill-gold-500"></i>
+                <i data-lucide="star" class="w-4 h-4 text-gold-500 fill-gold-500"></i>
+                <i data-lucide="star" class="w-4 h-4 text-gold-500 fill-gold-500"></i>
+                <i data-lucide="star" class="w-4 h-4 text-gold-500 fill-gold-500"></i>
+                <i data-lucide="star" class="w-4 h-4 text-gold-500 fill-gold-500"></i>
+              </div>
+              <p class="text-muted leading-relaxed mb-6">"Sudah 2 tahun jadi pelanggan setia Naedaa. Aksesoris koleksinya SELALU cantik dan berkualitas. Harga terjangkau tapi look-nya mahal. Ga pernah menyesal belanja sini!"</p>
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-white font-bold">DW</div>
+                <div>
+                  <h4 class="font-semibold text-charcoal">Diana Wulandari</h4>
+                  <p class="text-sm text-muted">Bandung • Verified Buyer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="flex items-center justify-center gap-4 mt-8">
+          <button id="prevTestimonial" class="w-12 h-12 rounded-full border-2 border-gold-300 flex items-center justify-center text-gold-600 hover:bg-gold-500 hover:text-white hover:border-gold-500 transition-all">
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+          </button>
+          <div class="flex gap-2" id="testimonialDots">
+            <span class="w-3 h-3 rounded-full bg-gold-500 transition-all"></span>
+            <span class="w-3 h-3 rounded-full bg-gold-200 transition-all"></span>
+            <span class="w-3 h-3 rounded-full bg-gold-200 transition-all"></span>
+          </div>
+          <button id="nextTestimonial" class="w-12 h-12 rounded-full border-2 border-gold-300 flex items-center justify-center text-gold-600 hover:bg-gold-500 hover:text-white hover:border-gold-500 transition-all">
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA / PROMO ===== -->
+  <section class="relative py-24 md:py-32 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="http://static.photos/cosmetic/1200x630/88" alt="CTA Background" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-charcoal/85"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/60 to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl scroll-animate">
+        <div class="inline-flex items-center gap-2 bg-gold-500/20 border border-gold-500/30 rounded-full px-5 py-2 mb-6">
+          <i data-lucide="percent" class="w-4 h-4 text-gold-400"></i>
+          <span class="text-gold-300 text-sm font-medium tracking-wider uppercase">Promo Eksklusif</span>
+        </div>
+
+        <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+          Diskon <span class="gold-shimmer">20%</span> untuk<br>Pembelian Pertama
+        </h2>
+
+        <p class="text-white/70 text-lg leading-relaxed mb-8">
+          Daftar sekarang dan dapatkan voucher diskon 20% untuk pembelanjaan pertama Anda. Nikmati pengalaman belanja premium yang tak terlupakan.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#" class="btn-primary px-8 py-4 rounded-full text-white font-medium tracking-wide text-center flex items-center justify-center gap-2">
+            <i data-lucide="gift" class="w-5 h-5"></i>
+            Klaim Voucher Sekarang
+          </a>
+          <a href="#" class="border-2 border-white/30 text-white px-8 py-4 rounded-full font-medium tracking-wide text-center hover:bg-white hover:text-charcoal transition-all flex items-center justify-center gap-2">
+            <i data-lucide="play-circle" class="w-5 h-5"></i>
+            Lihat Video
+          </a>
+        </div>
+
+        <!-- Trust small -->
+        <div class="flex flex-wrap items-center gap-6 mt-10 text-white/60 text-sm">
+          <div class="flex items-center gap-2">
+            <i data-lucide="shield-check" class="w-4 h-4 text-gold-400"></i>
+            <span>Garansi Uang Kembali</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i data-lucide="truck" class="w-4 h-4 text-gold-400"></i>
+            <span>Free Ongkir Min. Rp 200K</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i data-lucide="badge-check" class="w-4 h-4 text-gold-400"></i>
+            <span>100% Produk Original</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INSTAGRAM / SOCIAL PROOF ===== -->
+  <section class="py-16 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10 scroll-animate">
+        <div class="inline-flex items-center gap-2 mb-4">
+          <i data-lucide="instagram" class="w-5 h-5 text-gold-600"></i>
+          <span class="text-gold-600 text-sm font-semibold tracking-widest uppercase font-brand">@naedaa.official</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-charcoal">Ikuti Kami di Instagram</h2>
+        <p class="text-muted mt-2">Dapatkan inspirasi dan promo terbaru</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 scroll-animate">
+        <a href="#" class="group relative overflow-hidden rounded-xl aspect-square">
+          <img src="http://static.photos/cosmetic/320x240/10" alt="Instagram 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gold-600/0 group-hover:bg-gold-600/40 transition-all duration-300 flex items-center justify-center">
+            <i data-lucide="instagram" class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+          </div>
+        </a>
+        <a href="#" class="group relative overflow-hidden rounded-xl aspect-square">
+          <img src="http://static.photos/fashion/320x240/88" alt="Instagram 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gold-600/0 group-hover:bg-gold-600/40 transition-all duration-300 flex items-center justify-center">
+            <i data-lucide="instagram" class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+          </div>
+        </a>
+        <a href="#" class="group relative overflow-hidden rounded-xl aspect-square">
+          <img src="http://static.photos/cosmetic/320x240/66" alt="Instagram 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gold-600/0 group-hover:bg-gold-600/40 transition-all duration-300 flex items-center justify-center">
+            <i data-lucide="instagram" class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+          </div>
+        </a>
+        <a href="#" class="group relative overflow-hidden rounded-xl aspect-square">
+          <img src="http://static.photos/fashion/320x240/44" alt="Instagram 4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gold-600/0 group-hover:bg-gold-600/40 transition-all duration-300 flex items-center justify-center">
+            <i data-lucide="instagram" class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEWSLETTER ===== -->
+  <section class="py-16 md:py-20 bg-charcoal">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="scroll-animate">
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-white leading-tight mb-4">
+            Jadi yang Pertama Tahu<br>Promo & Koleksi Terbaru
+          </h2>
+          <p class="text-white/60 leading-relaxed">Bergabung dengan 15,000+ pelanggan naedaa dan dapatkan akses eksklusif ke sale, produk baru, dan tips kecantikan & fashion langsung di inbox Anda.</p>
+        </div>
+        <div class="scroll-animate">
+          <form id="newsletterForm" class="flex flex-col sm:flex-row gap-3">
+            <input type="email" id="emailInput" placeholder="Masukkan email Anda" class="flex-1 bg-white/10 border border-white/20 rounded-full px-6 py-4 text-white placeholder-white/40 focus:outline-none focus:border-gold-500 focus:bg-white/15 transition-all">
+            <button type="submit" class="btn-primary px-8 py-4 rounded-full text-white font-medium tracking-wide whitespace-nowrap flex items-center justify-center gap-2">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              Berlangganan
+            </button>
+          </form>
+          <p class="text-white/40 text-sm mt-3">Dengan berlangganan, Anda menyetujui kebijakan privasi naedaa. Berhenti kapan saja.</p>
+          <div id="newsletterMsg" class="hidden mt-3 text-sm"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="kontak" class="bg-[#111111] pt-20 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <!-- Brand -->
+        <div>
+          <a href="#" class="flex items-center gap-2 mb-6">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-500 to-gold-700 flex items-center justify-center">
+              <span class="font-display text-white text-lg font-bold">N</span>
+            </div>
+            <span class="font-display text-2xl font-semibold tracking-wider text-white">NAEDAA</span>
+          </a>
+          <p class="text-white/50 leading-relaxed mb-6">naedaa — toko online resmi untuk kecantikan, fashion, aksesoris, dan lifestyle premium. Bergabunglah dengan 15,000+ pelanggan yang telah mempercayai kami.</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:bg-gold-500 hover:border-gold-500 hover:text-white transition-all">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:bg-gold-500 hover:border-gold-500 hover:text-white transition-all">
+              <i data-lucide="facebook" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:bg-gold-500 hover:border-gold-500 hover:text-white transition-all">
+              <i data-lucide="twitter" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:bg-gold-500 hover:border-gold-500 hover:text-white transition-all">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-display text-lg font-semibold text-white mb-6">Kategori</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-white/50 hover:text-gold-400 transition-colors text-sm">Skincare & Kecantikan</a></li>
+            <li><a href="#" class="text-white/50 hover:text-gold-400 transition-colors text-sm">Fashion Wanita</a></li>
+            <li><a href="#" class="text-white/50 hover:text-gold-400 transition-colors text-sm">Aksesoris & Perhiasan</a></li>
+            <li><a href="#" class="text-white/50 hover:text-gold-400 transition-colors text-sm">Parfum & Aroma</a></li>
+            <li><a href="#" class="text-white/50 hover:text-gold-400 transition-colors text-sm">Home & Lifestyle</a></li>
+            <li><a href="#" class="text-white/50 hover:text-gold-400 transition-colors text-sm">Sale & Promo</a></li>
+          </ul>
+        </div>
+
+        <!-- Info -->
+        <div>
+          <h4 class="font-display text-lg font-semibold text-white mb-6">Informasi</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-white/50 hover:text-gold-400 transition-colors text-sm">Tentang Kami</a></li>
+            <li><a href="#" class="text-white/50 hover:text-gold-400 transition-colors text-sm">Kebijakan Privasi</a></li>
+            <li><a href="#" class="text-white/50 hover:text-gold-400 transition-colors text-sm">Syarat & Ketentuan</a></li>
+            <li><a href="#" class="text-white/50 hover:text-gold-400 transition-colors text-sm">Cara Pemesanan</a></li>
+            <li><a href="#" class="text-white/50 hover:text-gold-400 transition-colors text-sm">FAQ</a></li>
+            <li><a href="#" class="text-white/50 hover:text-gold-400 transition-colors text-sm">Karir</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="font-display text-lg font-semibold text-white mb-6">Hubungi Kami</h4>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <i data-lucide="map-pin" class="w-5 h-5 text-gold-500 mt-0.5 flex-shrink-0"></i>
+              <span class="text-white/50 text-sm">Jl. Sudirman No. 123, Jakarta Selatan 12190</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="phone" class="w-5 h-5 text-gold-500 mt-0.5 flex-shrink-0"></i>
+              <span class="text-white/50 text-sm">+62 812-3456-7890</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="mail" class="w-5 h-5 text-gold-500 mt-0.5 flex-shrink-0"></i>
+              <span class="text-white/50 text-sm">hello@naedaa.com</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="clock" class="w-5 h-5 text-gold-500 mt-0.5 flex-shrink-0"></i>
+              <span class="text-white/50 text-sm">Senin - Sabtu: 09:00 - 21:00 WIB</span>
+            </li>
+          </ul>
+
+          <!-- Payment methods -->
+          <div class="mt-6">
+            <h5 class="text-white/40 text-xs font-semibold tracking-widest uppercase mb-3">Metode Pembayaran</h5>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-white/10 text-white/70 text-xs px-3 py-1.5 rounded-md font-medium">VISA</span>
+              <span class="bg-white/10 text-white/70 text-xs px-3 py-1.5 rounded-md font-medium">Mastercard</span>
+              <span class="bg-white/10 text-white/70 text-xs px-3 py-1.5 rounded-md font-medium">BCA</span>
+              <span class="bg-white/10 text-white/70 text-xs px-3 py-1.5 rounded-md font-medium">Mandiri</span>
+              <span class="bg-white/10 text-white/70 text-xs px-3 py-1.5 rounded-md font-medium">GoPay</span>
+              <span class="bg-white/10 text-white/70 text-xs px-3 py-1.5 rounded-md font-medium">OVO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom -->
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-white/40 text-sm">&copy; 2024 naedaa Official Store. All rights reserved.</p>
+        <div class="flex items-center gap-6">
+          <a href="#" class="text-white/40 text-sm hover:text-gold-400 transition-colors">Privacy Policy</a>
+          <a href="#" class="text-white/40 text-sm hover:text-gold-400 transition-colors">Terms of Use</a>
+          <a href="#" class="text-white/40 text-sm hover:text-gold-400 transition-colors">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top button -->
+  <button id="backToTop" class="fixed bottom-6 right-6 w-12 h-12 bg-gold-500 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-gold-600 transition-all duration-300 opacity-0 pointer-events-none z-50">
+    <i data-lucide="chevron-up" class="w-5 h-5"></i>
+  </button>
+
+  <!-- Toast notification -->
+  <div id="toast" class="fixed top-6 right-6 z-[100] bg-charcoal text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 transform translate-x-[120%] transition-transform duration-500">
+    <i data-lucide="check-circle" class="w-5 h-5 text-gold-400"></i>
+    <span id="toastMsg" class="text-sm font-medium">Berhasil!</span>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // ===== NAVBAR SCROLL =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        navbar.classList.add('navbar-scrolled');
+      } else {
+        navbar.classList.remove('navbar-scrolled');
+      }
+    });
+
+    // ===== MOBILE MENU =====
+    const menuBtn = document.getElementById('menuBtn');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    closeMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ===== COUNTER ANIMATION =====
+    const counterElements = document.querySelectorAll('.counter-num');
+    let counterAnimated = new Set();
+
+    function animateCounter(el) {
+      const target = parseInt(el.getAttribute('data-target'));
+      const duration = 2000;
+      const startTime = performance.now();
+      
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // easeOutExpo
+        const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+        const current = Math.floor(easeProgress * target);
+        
+        el.textContent = current.toLocaleString('id-ID');
+        
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = target.toLocaleString('id-ID');
+        }
+      }
+      
+      requestAnimationFrame(update);
+    }
+
+    // ===== SCROLL ANIMATIONS =====
+    const scrollAnimateElements = document.querySelectorAll('.scroll-animate');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in-up');
+          entry.target.style.opacity = '1';
+          
+          // Check if it contains counter
+          const counters = entry.target.querySelectorAll('.counter-num');
+          counters.forEach(counter => {
+            if (!counterAnimated.has(counter)) {
+              counterAnimated.add(counter);
+              animateCounter(counter);
+            }
+          });
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    scrollAnimateElements.forEach(el => {
+      el.style.opacity = '0';
+      observer.observe(el);
+    });
+
+    // Also animate hero counters
+    const heroCounters = document.querySelectorAll('.min-h-screen .counter-num');
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          heroCounters.forEach(counter => {
+            if (!counterAnimated.has(counter)) {
+              counterAnimated.add(counter);
+              animateCounter(counter);
+            }
+          });
+          heroObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    heroObserver.observe(document.getElementById('beranda'));
+
+    // ===== HERO ANIMATIONS =====
+    const heroAnimateElements = document.querySelectorAll('.animate-fade-in-up.delay-200, .animate-fade-in-up.delay-400, .animate-fade-in-up.delay-500');
+    heroAnimateElements.forEach(el => {
+      el.style.opacity = '1';
+    });
+
+    // ===== PRODUCT FILTER =====
+    const filterBtns = document.querySelectorAll('.product-filter');
+    const productCards = document.querySelectorAll('.product-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active button
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-charcoal', 'text-white');
+          b.classList.add('bg-gold-50', 'text-muted');
+        });
+        btn.classList.remove('bg-gold-50', 'text-muted');
+        btn.classList.add('bg-charcoal', 'text-white');
+
+        const filter = btn.getAttribute('data-filter');
+
+        productCards.forEach((card, index) => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.style.display = 'block';
+            card.style.animation = `scaleIn 0.4s ease forwards ${index * 0.1}s`;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // ===== TESTIMONIAL SLIDER =====
+    const track = document.getElementById('testimonialTrack');
+    const dots = document.querySelectorAll('#testimonialDots span');
+    const prevBtn = document.getElementById('prevTestimonial');
+    const nextBtn = document.getElementById('nextTestimonial');
+    let currentSlide = 0;
+    let slidesToShow = window.innerWidth >= 768 ? 3 : 1;
+    const totalSlides = 3;
+
+    function updateSlider() {
+      slidesToShow = window.innerWidth >= 768 ? 3 : 1;
+      const offset = currentSlide * (100 / slidesToShow);
+      track.style.transform = `translateX(-${offset}%)`;
+      
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('bg-gold-500', i === currentSlide);
+        dot.classList.toggle('bg-gold-200', i !== currentSlide);
+      });
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentSlide = Math.max(0, currentSlide - 1);
+      updateSlider();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentSlide = Math.min(totalSlides - slidesToShow, currentSlide + 1);
+      updateSlider();
+    });
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        currentSlide = Math.min(i, totalSlides - slidesToShow);
+        updateSlider();
+      });
+      dot.style.cursor = 'pointer';
+    });
+
+    window.addEventListener('resize', () => {
+      slidesToShow = window.innerWidth >= 768 ? 3 : 1;
+      currentSlide = Math.min(currentSlide, totalSlides - slidesToShow);
+      updateSlider();
+    });
+
+    // ===== BACK TO TOP =====
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 600) {
+        backToTop.classList.remove('opacity-0', 'pointer-events-none');
+        backToTop.classList.add('opacity-100', 'pointer-events-auto');
+      } else {
+        backToTop.classList.add('opacity-0', 'pointer-events-none');
+        backToTop.classList.remove('opacity-100', 'pointer-events-auto');
+      }
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ===== NEWSLETTER =====
+    const newsletterForm = document.getElementById('newsletterForm');
+    const emailInput = document.getElementById('emailInput');
+    const newsletterMsg = document.getElementById('newsletterMsg');
+
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+      
+      if (!email) {
+        newsletterMsg.innerHTML = '<span class="text-red-400">⚠</span> Silakan masukkan email Anda.';
+        newsletterMsg.classList.remove('hidden');
+        return;
+      }
+      
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        newsletterMsg.innerHTML = '<span class="text-red-400">⚠</span> Format email tidak valid.';
+        newsletterMsg.classList.remove('hidden');
+        return;
+      }
+      
+      showToast('Terima kasih! Voucher diskon 20% telah dikirim ke email Anda 🎉');
+      emailInput.value = '';
+      newsletterMsg.innerHTML = '<span class="text-green-400">✓</span> Berhasil berlangganan!';
+      newsletterMsg.classList.remove('hidden');
+      setTimeout(() => newsletterMsg.classList.add('hidden'), 5000);
+    });
+
+    // ===== TOAST =====
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.textContent = message;
+      toast.style.transform = 'translateX(0)';
+      
+      setTimeout(() => {
+        toast.style.transform = 'translateX(120%)';
+      }, 4000);
+    }
+
+    // ===== WISHLIST TOGGLE =====
+    document.querySelectorAll('.product-card button').forEach(btn => {
+      if (btn.querySelector('[data-lucide="heart"]')) {
+        btn.addEventListener('click', function() {
+          const icon = this.querySelector('[data-lucide="heart"]');
+          if (this.classList.contains('bg-gold-500')) {
+            this.classList.remove('bg-gold-500', 'text-white');
+            this.classList.add('text-charcoal');
+            showToast('Dihapus dari wishlist');
+          } else {
+            this.classList.add('bg-gold-500', 'text-white');
+            this.classList.remove('text-charcoal');
+            showToast('Ditambahkan ke wishlist ❤️');
+          }
+        });
+      }
+    });
+
+    // ===== SMOOTH SCROLL FOR NAV LINKS =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = 80;
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
