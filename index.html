@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>naedaa — Official Store | Kecantikan, Fashion & Aksesoris</title>
+  <link rel="icon" href="naedaa/images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="naedaa/images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="naedaa/images/favicon-192.png">
+  <link rel="apple-touch-icon" href="naedaa/images/apple-touch-icon.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -140,6 +144,9 @@
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08) !important;
     }
 
+    .navbar-scrolled .logo-putih { opacity: 0; }
+    .navbar-scrolled .logo-hitam { opacity: 1; }
+
     /* Mobile menu */
     .mobile-menu {
       transform: translateX(100%);
@@ -222,11 +229,10 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
         <!-- Logo -->
-        <a href="#" class="flex items-center gap-2 group">
-          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-500 to-gold-700 flex items-center justify-center">
-            <span class="font-brand text-white text-lg font-bold">n</span>
-          </div>
-          <span class="font-brand text-2xl font-semibold tracking-wider text-charcoal group-hover:text-gold-600 transition-colors">naedaa</span>
+        <a href="#" class="relative flex items-center" aria-label="naedaa.com, ke beranda">
+          <!-- Putih saat di atas hero, hitam setelah halaman di-scroll -->
+          <img src="naedaa/images/logo-naedaa-putih.png" alt="naedaa.com" class="logo-putih h-10 sm:h-11 w-auto transition-opacity duration-300">
+          <img src="naedaa/images/logo-naedaa-hitam.png" alt="" aria-hidden="true" class="logo-hitam absolute left-0 top-0 h-10 sm:h-11 w-auto opacity-0 transition-opacity duration-300">
         </a>
 
         <!-- Desktop Nav -->
@@ -251,11 +257,8 @@
   <div id="mobileMenu" class="mobile-menu fixed inset-0 z-[60] bg-cream">
     <div class="flex flex-col h-full">
       <div class="flex items-center justify-between h-20 px-6">
-        <a href="#" class="flex items-center gap-2">
-          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-500 to-gold-700 flex items-center justify-center">
-            <span class="font-brand text-white text-lg font-bold">n</span>
-          </div>
-          <span class="font-brand text-2xl font-semibold tracking-wider text-charcoal">naedaa</span>
+        <a href="#" class="flex items-center" aria-label="naedaa.com, ke beranda">
+          <img src="naedaa/images/logo-naedaa-hitam.png" alt="naedaa.com" class="h-10 w-auto">
         </a>
         <button id="closeMenuBtn" class="text-charcoal p-2">
           <i data-lucide="x" class="w-6 h-6"></i>
